@@ -29,17 +29,17 @@
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script>
         // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
+        Pusher.logToConsole = false;
 
-        var pusher = new Pusher("{{ env('PUSHER_APP_KEY') }}", {
-            cluster: 'eu'
+        var pusher = new Pusher('6af8cd1a85fe38facfdc', {
+            cluster: 'mt1'
         });
 
         var channel = pusher.subscribe('new_user_channel');
         channel.bind('App\\Events\\NewUserRegisteredEvent', function(data) {
-            console.log(JSON.stringify(data));
+            console.log(data['message']);
+            $(".notificationsIcon").load(" .notificationsIcon > *");
+            $("#notificationsModal").load(" #notificationsModal > *");
         });
     </script>
-
-
-</head> 
+</head>
